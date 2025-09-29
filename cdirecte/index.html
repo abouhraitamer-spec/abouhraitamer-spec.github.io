@@ -42,6 +42,7 @@ function calculate Position() {
 // Agafar les dades introduïdes per l'usuari
 let a1 = parseFloat(document.getElementById('a1').value);
 let a2 = parseFloat(document.getElementById('a2').value);
+
 let q1_deg = parseFloat(document.getElementByld(q1').value); // Grados
 let q2_deg = parseFloat(document. getElementByld(q2').value); // Grados
 let ql = q1_deg * Math.PI/ 180; // Convertir graus a radians
@@ -85,6 +86,11 @@ document.getElementByld('output').innerHTML = output;
 MathJax.typesetO; // Renderitzar MathJax per mostrar les fórmules correctament // Fase 4: Part gràfica
 let canvas = document.getElementByld(robotCanvas );
 let ctx = canvas.getContext('2d*);
+
+
+
+
+
 ctx. clearRect(0, 0, canvas.width, canvas.height); // Netejar canvas
 // Centre i escales
 let centerX = canvas.width / 2;
