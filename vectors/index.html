@@ -7,7 +7,21 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Suma de Vectors Nàutics: Vaixell, Vent i Corrent</title>
     <script>
+        // Les baerres inclinades són comentaris de javascript, aquest codi que hi ha entre script
+        //Es un llenguatje diferent a html, es java script
+        /*M
+        comentari multlinea
+        A sota tenim un codi javascript que configura de configuració de mathjax, que permet  renderitzar (visulaitzar bé)
+        les formules matematiques en una pagina web. MathJax utilitza dos tipues de llenguatjes matematics: TeX/LaTeX i MthML
+        TeX es pronuncia tech i LaTeX  significa LAMPORT que es el cognom de la perosna que va mdoficiar TeX per fero com mes
+        facil, MathML es un llenguatge mes model semblant al HTML, ML  significa Markup langugae, llenguatje de marces MathML 
+        es molt semblant a HTML, pero es mes llarg que LaTeX.    
+        */
         window.MathJax = {
+            /*Crea una variable global anomenada window.MathJex que es carregara quan es carregi la pagina web al principi i 
+            fara que quan tenim les formules en liena ies a dir Text normal i una formula en la mateixa liena hem d'escriure 
+            al principi i al final un o dos dolars. Potser ala mateixa linia o en el mateix parragraf  sense salt de liena ni centrats.
+            */
             tex: { inlineMath: [['$', '$'], ['\\(', '\\)']] },
             svg: { fontCache: 'global' }
         };
