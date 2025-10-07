@@ -23,12 +23,19 @@
             al principi i al final un o dos dolars. Potser ala mateixa linia o en el mateix parragraf  sense salt de liena ni centrats.
             */
             tex: { inlineMath: [['$', '$'], ['\\(', '\\)']] },
-            svg: { fontCache: 'global' }
+            svg: { fontCache: 'global' } //svg vol dir vectors grafics escalables es poden fer molt grans o molt petites.
+            //les imatges poden ser dos tipues svg o mapa de bit.Els mapes de bit estan depixels i son els png o jpg
+            //o gif. Els svg son millors que esl mapes d ebit perque son formules matematiques  i ens permesten fer dibuixos 
+            //perfectes.
         };
     </script>
     <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-svg.js"></script>
     <style>
         body { font-family: Arial, sans-serif; margin: 20px; line-height: 1.6; }
+        //Hi ha tres grans families de lletres sans-serif, serif i monospace
+        //Serif en frances o internacionalment serifada o amb  adornaments, es quan una lletra te uns remats
+        //Sans-serif significa sense serif, es a diir sense cap mena d'adorn.
+        //mono space significa lletra mono espaciada que ocpa lletra el mateix ample es util per codi perque els espais en blanc  poden ser mollt importants
         h2 { color: #333; }
         input[type="number"] { width: 70px; margin-right: 10px; }
         button { padding: 8px 16px; margin-top: 10px; cursor: pointer; }
