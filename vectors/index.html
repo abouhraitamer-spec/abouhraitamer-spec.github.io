@@ -32,13 +32,40 @@
     <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-svg.js"></script>
     <style>
         body { font-family: Arial, sans-serif; margin: 20px; line-height: 1.6; }
-        //Hi ha tres grans families de lletres sans-serif, serif i monospace
-        //Serif en frances o internacionalment serifada o amb  adornaments, es quan una lletra te uns remats
-        //Sans-serif significa sense serif, es a diir sense cap mena d'adorn.
-        //mono space significa lletra mono espaciada que ocpa lletra el mateix ample es util per codi perque els espais en blanc  poden ser mollt importants
+        /*Hi ha tres grans families de lletres sans-serif, serif i monospace
+        Serif en frances o internacionalment serifada o amb  adornaments, es quan una lletra te uns remats
+        Sans-serif significa sense serif, es a diir sense cap mena d'adorn.
+        mono space significa lletra mono espaciada que ocpa lletra el mateix ample es util per codi perque
+        els espais en blanc  poden ser mollt importants.
+        Diferencia entre serif sanserif monospace.
+        Model de caixes css o box model css en el box model tenim una capa al voltant del
+        contingut o content que es diu padding al voltant del padding es troba el border i al voltant  del border es troba al margin.
+        Margin border i padding  son propietats css ( propietats) que van seguidas de dos punts  i un valor o value en pixels
+        Tots els css son iguals primer es posa el nom de la etiqueta html o tag a la cual volem donar-li un o diverses estils per expmple
+        h2 button o canvas... Despres del tag es posa una clau de tipus "curly bracket" i a sota es posa propietat1:valor1; i en la linea
+        següent propietat2:valor2; si la propietat es colorel valor es  #333, el numero 333 no es un numero decimal es un numero exadecinmal 
+        en base 16. Vol dir que els numeros hexadecimals son 0 al 9(vol dir 10) A,(10) B(11) C(12) D(13) E(14) F(15)
+        Els codis de color tenen tres valors de hexadecimals que van del 00 del FF, es a dr  si tinc una cokbinacio que anira desde al 000000
+        fins  al FFFFFF. Els dos primers digits son de color vermell, els  dos segÜents son el color verd, i el s dos ultims son blaus.
+        Recordar rgb(red,green,blue)Quantes combinacions  de colors blancs tenim? 256 elevt a la 3=6 millions 700mil colors diferents.
+        El color pot expresar en hexadecimal o en rgb en decimal, per exmple #F0000, es 255,0,0 es pot expresar d'una altre manera
+        Avegades noms en angles com red o nims que puc trobar amb color  names  html en google. h2  de la linea 53 controla el h2 que es troba
+         a la linea 68 i el #333 es el color gris. Llavors que f ala linea 54 i la linea 58? Fa que  el titol  de la linea 68 sigui gris*/
         h2 { color: #333; }
         input[type="number"] { width: 70px; margin-right: 10px; }
+        /*input es una ertiqueta html  que permet l'entrada de dades per ñl'usuari i al tipus de number nomes accepta nunmeros, 
+         com podem veure a linea 56 i a la linea no accepta lletra com veiem a la linea 100 in put es como iuna caixa de text  
+        perque escrigui l'usuari i tindra una amplada definida a la linea 56 amb css, with  es amplada en ingles, i amb 70 pixels d'mplada
+        puc escriute d'un numero d'ample i  perque deixo  marge a la dreta de 10 pixels? Per tenir espai i no s'uneix
+        l'entrada d'informacio amb l'entrada de l'usuari, seria un marge dintre d ela caixa */
         button { padding: 8px 16px; margin-top: 10px; cursor: pointer; }
+        /*A la 613 tinc  la vonfiguracio del boto o de tots els botons que esta a la 114 i que ens permet calcular
+        quan cliko. Aqesuesta boto te paddingo marge interior, quan hi ha dos numeros 8pixels i 16 pixels si hi ha un numero
+        significa que els marges estan en els cuatre costats i son iguals a aquest numero, si hi ha dos numeros el primer numero
+        es el mateix adalt i abaix  i el segon numero es a la dreta i a la esquerra en aques 
+        cas 8 pixels adalt i abaix i 16 pixels a ala dreta i a al desquwerra si hi hgaues 3 numeros  el primer es adlat,
+        el segon dreta i esquetrra i el terces numero es abaic margin top es un altree forma de regular el marge superior 
+        tambe existeixen margin-button margin rwite margin left*/
         .result { margin-top: 20px; background-color: #f0f0f0; padding: 10px; border-radius: 5px; }
         canvas { border: 1px solid #ccc; margin-top: 20px; background-color: #f9f9f9; }
         .teoria { background: #eef; padding: 10px; border-radius: 5px; margin-bottom: 20px; }
