@@ -1,231 +1,141 @@
 <!DOCTYPE html>
-
 <html lang="ca">
 <head>
-     <!-- Conté la informació pel programador i és obligatori la secció head-->
-    <meta charset="UTF-8">
-    <!-- És el document html, escrit en català i amb un conjunt de conectors de caràcters UTF-8 perquè accepti els accens i ç.-->
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Suma de Vectors Nàutics: Vaixell, Vent i Corrent</title>
-    <script> 
-        //Les barres inclinades, són comentaris de  javascript. Aquest codi que va entre script
-        //és un llenguatge diferent a html, és javascript.
-        /* 
-        Comentari multilínia
-        A sota tenim un codi javascript de configuració de mathjax,vque permet renderitzar (visualitzar bé)
-        les fòrmules matemàtiques en una pàgina web. Mathjax utillitza dos tipus de llenguatges matemàtics:
-        Tex/LaTeX I MathML, TeX es pronuncia Tech i LaTeX significa Lamport que és el cognom de la persona que va modificar
-        TeX per fer-lo més fàcil, MathML és un llenguatge més modern semblant al HTML, ML significa Markup language,
-        llenguatge de marques. MathML és olt molt semblant a HTML,però és més llarg que LaTeX.
-        */
-        window.MathJax = {
-             /* Crea una variable global anomenada window.MathJax que es carregarà quan es carregui la pagina web i farà que quan 
-             tenim les fòrmules en línia, és a dir, text normal i una fórmula en la mateixa línia hem d'escriure al principi i al finaal 1 o 2 dòlars.
-             Pot ser a la mateixa línia o en el mateix paràgraf sense salts de línia ni centrats.
-             */
-            tex: { inlineMath: [['$', '$'], ['\\(', '\\)']] },
-            svg: { fontCache: 'global' } // SVG vol dir vectors gràfics escalables (es poden fer molt grans o molts petits).
-          //Les imatges poden ser de dos tipus svg o mapa de bit. Els mapes de bits estan fets de píxels i son png o jpg o gif.
-          // Els svg són millors que els mapes de bit, perquè són fòrmules matemàtiques i ens permeten fer dibuixos exactes.
-        };
-    </script>
-    <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-svg.js"></script>
-    <style>
-        body { font-family: Arial, sans-serif; margin: 20px; line-height: 1.6; }
-         /*Hi ha tres grans famílies de lletres sans-serif, serif i monospace. 
-         Serif en francès o internacionalment, serifada o amb adornaments, és quan una lletra té uns remats
-         Sans-serif, significa lletra monospaciada que ocupa cada lletra el mateix amb, és útil per codi.
-         Model de  caixes css o box model css, en el box model tenim una capa al voltant del border es troba el margin. Margin, border i padding son propietats css(propieties) 
-         que van seguides de dos punts i un valor o value en píxels.
-         Tots els css són iguals, primer es posa el nom de la etiqueta html o tag a la qual volem donar-li un o diversos estils, per exemple h2 o button o canvas...
-         Després del tag es posa una clau tipus "curly bracket" i a sota es posa propietat1; i en la línia següent propietat2:valor2;
-         si la propietat és color el valor és #333. El número #333 no és un número decimal, és un número hexadecimal amb base 16.
-         Els codis de colors tenen tres valors hexadecimal que van del 00 fins FF,és a dir,que tinc una combinació que va desdel 000000 fins FFFFFF.
-         Els dos primers digits són el color vermell, els dos següents l verd, i els últims dos són blaus.
-         Recordar rgb. Tenim 256 elevat a la 3 =16 milions 700 mil colors diferents.
-         El color es pot expressar en decimal i hexadecimal per exemple #FF0000 és 255,0,0 es pot expressar d'una altra manera?
-         A vegades noms en angles com red o noms que puc trobar amb color names html en google. h2 de la línia 54 controla el h2 
-         que es troba a la línia 68 i el #333 és el color gris. LLavor que fa la línia 54 i la línia 58? Fa que el títol de la línia
-         68 sigui gris*/*/
-        
-               h2 { color: #333; }
-        input[type="number"] { width: 70px; margin-right: 10px; }
-        /* input és una etiqueta que permet l'entrada de dades per l'usuari i al ser de tipus number només accepta números,
-         no accepta lletres com podem veure a la línia 56 i a la línia 99,100,105. El input és com una caixa de text per a que escrigui l'usuari i tindrà  
-         una amplada definida a la línia 56 amb css width que és amplada en anglès. */
-        button { padding: 8px 16px; margin-top: 10px; cursor: pointer; }
-         /* A la 63 la configuració del botó o de tots els botons que està a la 114 i que ens permet
-        calcular quan clico. Aquest botó tè padding o marge interior, quan hi ha dos números, 8 píxels i 16 píxels, 
-        si hi ha un número significa que els marges estan pels 4 costats i són iguals a aquests números,
-        si hi ha dos números el primer número es el mateix marge adalt i abaix, i el segon número és a la dreta i a la esquerra,
-        en aquest cas 8 píxels adalt i abaix i 16 píxels a dreta i esquerra. Si hi hagues tres números el primer és adalt, 
-        el segon dreta i esquerra i el tercer número és a baix, margin top és un altre forma de regular el marge superior, 
-        també existeix margin-bottom, margin-right i margin-left. Cursor pointer és que es vegui el cursor dins 
-        del text box o caixa de text.*/
-        .result { margin-top: 20px; background-color: #f0f0f0; padding: 10px; border-radius: 5px; }
-         /* Result té un punt davant que significa que són de la mateixa classe que és un objecte del que podem tenir diverses instàncies o objectes
-        de la mateixa classe, vol dir que puc afectar a diferents zones que es diguin results, és a dir, class="result" 
-        que es troba a la línia 126 i que contindra diferent resultats, la línia 72 dona estil a la líi 126 i
-        fa que els resultats tinguin un marge superior de 20 píxels un color de fons gris, un marge intern de 10 píxels
-        i un radi de la zona grisa de resultats de les cantonades de 5 píxels*/
-        canvas { border: 1px solid #ccc; margin-top: 20px; background-color: #f9f9f9; }
-         /* Canvas és l'àrea de dibuix on surten els vectors i té una cantonada de 1 píxel de gruix sòlid 
-        de color gris i un marge superior de 20 píxels i un fons grisos i es refereix al canvas que estroba a la línia 131*/
-        .teoria { background: #eef; padding: 10px; border-radius: 5px; margin-bottom: 20px; }
-    </style>
-</head>
-<body>
-    <h1>Suma de Vectors Nàutics: Vaixell, Vent i Corrent</h1>
-
-
-<div class="teoria">
-    <h2>Recordatori Teòric</h2>
-    <p>Per un vector de mòdul $V$ i rumb $\theta$ (en graus):</p>
-    <ul>
-        <li>$\theta_{rad} = \theta \cdot \pi / 180$</li>
-        <li>Component horitzontal (X): $V_x = V \cdot \sin(\theta_{rad})$</li>
-        <li>Component vertical (Y): $V_y = V \cdot \cos(\theta_{rad})$</li>
-    </ul>
-    <p>Suma de vectors:</p>
-    <ul>
-        <li>$R_x = V_x + W_x + C_x$</li>
-        <li>$R_y = V_y + W_y + C_y$</li>
-    </ul>
-    <p>Vector resultant:</p>
-    <ul>
-        <li>$|R| = \sqrt{R_x^2 + R_y^2}$</li>
-        <li>$\theta_R = \arctan\left(\frac{R_x}{R_y}\right)$</li>
-    </ul>
-</div>
-
-<p>Introdueix els vectors (rumb en graus i velocitat en nusos) i clica "Calcula".</p>
-
-<div>
-    <h2>Vector del Vaixell ($\vec{V}$)</h2>
-    Rumb: <input type="number" id="vRumb" value="146">°
-    Velocitat: <input type="number" id="vVel" value="10"> nusos
-</div>
-
-<div>
-    <h2>Vector del Vent ($\vec{W}$)</h2>
-    Rumb: <input type="number" id="wRumb" value="240">°
-    Velocitat: <input type="number" id="wVel" value="5"> nusos
-</div>
-
-<div>
-    <h2>Vector del Corrent ($\vec{C}$)</h2>
-    Rumb: <input type="number" id="cRumb" value="30">°
-    Velocitat: <input type="number" id="cVel" value="3"> nusos
-</div>
-
-<button onclick="calculaVectors()">Calcula</button>
-
-<div id="result" class="result" style="display:none;"></div>
-<canvas id="canvas" width="500" height="500" style="display:none;"></canvas>
-
-<script>
-    function calculaVectors() {
-        const vRumb = parseFloat(document.getElementById('vRumb').value);
-        const vVel = parseFloat(document.getElementById('vVel').value);
-        const wRumb = parseFloat(document.getElementById('wRumb').value);
-        const wVel = parseFloat(document.getElementById('wVel').value);
-        const cRumb = parseFloat(document.getElementById('cRumb').value);
-        const cVel = parseFloat(document.getElementById('cVel').value);
-
-        const degToRad = Math.PI / 180;
-        const vRad = vRumb * degToRad;
-        const wRad = wRumb * degToRad;
-        const cRad = cRumb * degToRad;
-
-        const Vx = vVel * Math.sin(vRad);
-        const Vy = vVel * Math.cos(vRad);
-        const Wx = wVel * Math.sin(wRad);
-        const Wy = wVel * Math.cos(wRad);
-        const Cx = cVel * Math.sin(cRad);
-        const Cy = cVel * Math.cos(cRad);
-
-        const Rx = Vx + Wx + Cx;
-        const Ry = Vy + Wy + Cy;
-        const Rmag = Math.sqrt(Rx**2 + Ry**2);
-        let Rdeg = Math.atan2(Rx, Ry) * 180 / Math.PI;
-        if (Rdeg < 0) Rdeg += 360;
-
-        const resultDiv = document.getElementById('result');
-        resultDiv.style.display = 'block';
-        resultDiv.innerHTML = `
-            <h2>Resultats pas a pas</h2>
-
-            <p><strong>Conversió a radians:</strong></p>
-            <ul>
-                <li>$${vRumb}^\\circ \\cdot \\pi/180 = ${(vRad).toFixed(3)} \\, rad$</li>
-                <li>$${wRumb}^\\circ \\cdot \\pi/180 = ${(wRad).toFixed(3)} \\, rad$</li>
-                <li>$${cRumb}^\\circ \\cdot \\pi/180 = ${(cRad).toFixed(3)} \\, rad$</li>
-            </ul>
-
-            <p><strong>Components (usant sin i cos):</strong></p>
-            <ul>
-                <li>$V_x = ${vVel} \\cdot \\sin(${vRumb}^\\circ) = ${Vx.toFixed(3)}$</li>
-                <li>$V_y = ${vVel} \\cdot \\cos(${vRumb}^\\circ) = ${Vy.toFixed(3)}$</li>
-                <li>$W_x = ${wVel} \\cdot \\sin(${wRumb}^\\circ) = ${Wx.toFixed(3)}$</li>
-                <li>$W_y = ${wVel} \\cdot \\cos(${wRumb}^\\circ) = ${Wy.toFixed(3)}$</li>
-                <li>$C_x = ${cVel} \\cdot \\sin(${cRumb}^\\circ) = ${Cx.toFixed(3)}$</li>
-                <li>$C_y = ${cVel} \\cdot \\cos(${cRumb}^\\circ) = ${Cy.toFixed(3)}$</li>
-            </ul>
-
-            <p><strong>Suma de components:</strong></p>
-            <ul>
-                <li>$R_x = ${Vx.toFixed(3)} + ${Wx.toFixed(3)} + ${Cx.toFixed(3)} = ${Rx.toFixed(3)}$</li>
-                <li>$R_y = ${Vy.toFixed(3)} + ${Wy.toFixed(3)} + ${Cy.toFixed(3)} = ${Ry.toFixed(3)}$</li>
-            </ul>
-
-            <p><strong>Mòdul (teorema de Pitàgores):</strong></p>
-            <p>$|R| = \\sqrt{(${Rx.toFixed(3)})^2 + (${Ry.toFixed(3)})^2} = ${Rmag.toFixed(2)} \\, nusos$</p>
-
-            <p><strong>Rumb (funció arctan):</strong></p>
-            <p>$\\theta_R = \\arctan\\left(\\frac{${Rx.toFixed(3)}}{${Ry.toFixed(3)}}\\right) = ${Rdeg.toFixed(2)}^\\circ$</p>
-        `;
-        MathJax.typeset();
-
-        const canvas = document.getElementById('canvas');
-        canvas.style.display = 'block';
-        const ctx = canvas.getContext('2d');
-        ctx.clearRect(0, 0, canvas.width, canvas.height);
-
-        const cx0 = canvas.width/2;
-        const cy0 = canvas.height/2;
-        const scale = 15;
-
-        function drawVector(x, y, color, label) {
-            ctx.beginPath();
-            ctx.moveTo(cx0, cy0);
-            ctx.lineTo(cx0 + x*scale, cy0 - y*scale);
-            ctx.strokeStyle = color;
-            ctx.lineWidth = 2;
-            ctx.stroke();
-
-            const angle = Math.atan2(-y, x);
-            const headLength = 10;
-            ctx.beginPath();
-            ctx.moveTo(cx0 + x*scale, cy0 - y*scale);
-            ctx.lineTo(cx0 + x*scale - headLength*Math.cos(angle - Math.PI/6),
-                       cy0 - y*scale + headLength*Math.sin(angle - Math.PI/6));
-            ctx.lineTo(cx0 + x*scale - headLength*Math.cos(angle + Math.PI/6),
-                       cy0 - y*scale + headLength*Math.sin(angle + Math.PI/6));
-            ctx.lineTo(cx0 + x*scale, cy0 - y*scale);
-            ctx.fillStyle = color;
-            ctx.fill();
-
-            ctx.fillStyle = color;
-            ctx.font = "14px Arial";
-            ctx.fillText(label, cx0 + x*scale + 5, cy0 - y*scale - 5);
-        }
-
-        drawVector(Vx, Vy, 'blue', 'V');
-        drawVector(Wx, Wy, 'green', 'W');
-        drawVector(Cx, Cy, 'orange', 'C');
-        drawVector(Rx, Ry, 'red', 'R');
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>WEB DE ROGER FARRÀS</title>
+  <!-- Link és un codi html que permet unir o linkar arxius CSS. Els arxius CSS són conjunts de codis que ens permeten
+  donar estil a la pàgina. CSS (cascade style sheet) vol dir full d'estil en cascada i permet donar marges al text, triar el tipus de lletra, interlineat... 
+  En cascada vol dir que afecta diferentes pàgines, una darrere l'altra. Les dues línies seguents són CDN: Content Delivery Network, 
+  és a dir, una adreça d'internet on està una biblioteca amb moltes instruccions que ens ajuden a fer estils (1a línia dels 2).
+  La segona línia inclou la biblioteca d'estils fonts awesome. Si no poso o m'oblido de les dues línies no funciionaran algunes línies de més endavant. 
+  Per exemple la línia 26,27 no funcionarà-->
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css" rel="stylesheet">
+  <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css" rel="stylesheet">
+  <style>
+    /* 1. Submenús en mode fosc */
+    body[data-bs-theme="dark"] .dropdown-menu {
+      background-color: #2c2c2c !important;
+      border-color: #444;
     }
-</script>
+    body[data-bs-theme="dark"] .dropdown-item {
+      color: #f8f9fa !important;
+    }
+    body[data-bs-theme="dark"] .dropdown-item:hover,
+    body[data-bs-theme="dark"] .dropdown-item:focus {
+      background-color: #3c3c3c !important;
+      color: #ffffff !important;
+    }
 
+    /* 2. Botó mode fosc/clar només icona */
+    #themeToggle {
+      border: none;
+      background: transparent;
+      font-size: 1.3rem;
+      color: inherit;
+    }
+
+    /* 3. Hamburguesa blanca en mode fosc */
+    .navbar-toggler {
+      border: none;
+    }
+    .navbar-toggler-icon {
+      background-image: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 30 30'%3e%3cpath stroke='rgba%280,0,0,0.7%29' stroke-width='2' stroke-linecap='round' stroke-miterlimit='10' d='M4 7h22M4 15h22M4 23h22'/%3e%3c/svg%3e");
+    }
+    body[data-bs-theme="dark"] .navbar-toggler-icon {
+      background-image: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 30 30'%3e%3cpath stroke='rgba%28255,255,255,0.9%29' stroke-width='2' stroke-linecap='round' stroke-miterlimit='10' d='M4 7h22M4 15h22M4 23h22'/%3e%3c/svg%3e");
+    }
+
+    /* 4. Logo circular i adaptatiu */
+    .logo {
+      width: 40px;
+      height: 40px;
+      object-fit: cover;
+    }
+    @media (max-width: 576px) {
+      .logo {
+        width: 30px;
+        height: 30px;
+      }
+    }
+    @media (min-width: 992px) {
+      .logo {
+        width: 50px;
+        height: 50px;
+      }
+    }
+  </style>
+</head>
+<body data-bs-theme="light">
+  <!-- Navbar -->
+  <nav class="navbar navbar-expand-lg navbar-light shadow sticky-top">
+    <div class="container-fluid">
+      <!-- 5. Logo i text -->
+      <a class="navbar-brand d-flex align-items-center" href="#">
+        <img src="logo.png" alt="Logo" class="logo rounded-circle me-2">
+        <span class="fw-bold">Web de Roger Farràs</span>
+      </a>
+
+      <!-- Botó menú mòbil -->
+      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+
+      <!-- Menú -->
+      <div class="collapse navbar-collapse" id="navbarNav">
+        <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+          <!-- Projecte 1 -->
+          <li class="nav-item dropdown">
+            <a class="nav-link dropdown-toggle" href="#" id="proj1Dropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+              <i class="fa-solid fa-diagram-project me-1"></i> NÀUTICA </a>
+            <ul class="dropdown-menu" aria-labelledby="proj1Dropdown">
+              <li><a class="dropdown-item" href="https://rfarras.github.io/vectors"><i class="fa-solid fa-code me-1"></i> Suma de vectors nàutics</a></li>
+              <li><a class="dropdown-item" href="https://rfarras.github.io/MapesNàutics"><i class="fa-solid fa-database me-1"></i> Mapes nàutics</a></li>
+            </ul>
+          </li>
+          <!-- Projecte 2 -->
+          <li class="nav-item dropdown">
+            <a class="nav-link dropdown-toggle"#href="https://rfarras.github.io/BraçRobòtic" id="proj2Dropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+              <i class="fa-solid fa-folder-open me-1"></i> BRAÇ ROBÒTIC
+            </a>
+            <ul class="dropdown-menu" aria-labelledby="proj2Dropdown">
+              <li><a class="dropdown-item" href="https://rfarras.github.io/cdirecta"><i class="fa-solid fa-chart-line me-1"></i> Cinemàtica directa</a></li>
+              <li><a class="dropdown-item" href="https://rfarras.github.io/cinversa"><i class="fa-solid fa-cogs me-1"></i> Cinemàtica inversa </a></li>
+            </ul>
+          </li>
+        </ul>
+        <!-- Botó mode clar/fosc -->
+        <button id="themeToggle" class="ms-2"><i class="fa-solid fa-moon"></i></button>
+      </div>
+    </div>
+  </nav>
+
+  <!-- Contingut -->
+  <main class="container py-5">
+    <h1 class="display-5 fw-bold mb-4">Benvinguts als Projectes</h1>
+    <p class="lead">Em dic <u>Roger Farràs</u> &#9996;, sóc <i>alumne</i> de <b>robótica i programació</b> de 1r de Batxillerat de <a href="https://agora.xtec.cat/ies-pompeu-fabra-martorell/">l'Institut Pompeu Fabra</a>. Aquest és el punt de partida per editar tot i fer projectes amb el professor Francesc Pérez.<p>Aquesta pàgina està escrita en html (llenguatge de marques d'hipertext) que dona l'estructura física i utilitza CSS (fulles d'estil en cascada) que ens ajuda a donar forma a la web(paràgrafs,títol,llistes,imatges,links,audio,videos). </p>
+    <p>A més utilitza JavaScript que proporciona tota la interactivitat de la pàgina web</p>
+    <p>Utilitza biblioteques externes com bootstrap que coté JavaScript i CSS ique ens permet fer un menu despegable i posar un logo fàcilment</p>
+    <p>Una altra llibreria externa que utilitzem és fontawesome, que ens permet utiitzar símbols amb facilitat, són els símbols que hi ha davant del menú.</p>
+  </main>
+
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/js/bootstrap.bundle.min.js"></script>
+  <script>
+    // Mode clar/fosc amb canvi d'icona
+    const themeToggle = document.getElementById('themeToggle');
+    const themeIcon = themeToggle.querySelector('i');
+
+    themeToggle.addEventListener('click', () => {
+      if (document.body.getAttribute('data-bs-theme') === 'dark') {
+        document.body.setAttribute('data-bs-theme', 'light');
+        themeIcon.classList.remove('fa-sun');
+        themeIcon.classList.add('fa-moon');
+      } else {
+        document.body.setAttribute('data-bs-theme', 'dark');
+        themeIcon.classList.remove('fa-moon');
+        themeIcon.classList.add('fa-sun');
+      }
+    });
+  </script>
 </body>
 </html>
