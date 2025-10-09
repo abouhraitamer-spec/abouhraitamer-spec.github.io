@@ -68,16 +68,34 @@
         tambe existeixen margin-button margin rwite margin left*/
         .result { margin-top: 20px; background-color: #f0f0f0; padding: 10px; border-radius: 5px; }
         canvas { border: 1px solid #ccc; margin-top: 20px; background-color: #f9f9f9; }
+        /*canvas s alinea 127 es una etiqueta html que correspon a una area de dibuix que si em fixo en liena 127 esta buida,
+        perque entre <canvas> no hi ha res, a mes diu que el style es display es a dir que no es vegi. L alinea 76 esta c
+        ontrolant la lina 127, es a dir controla com es el canvas.  QUan sidui visble el canvas tindra el següent estil:
+        Els bordes tindran un gruid de un 1 pixel, es solid  perque podria ser puntejat amb la parual dotted(punteado, dot=punt)
+        Podria ser doble hi veuriem un  borde al voltant del primer. Podriem posar margin-top d'una altre manera? margin:
+        20px 0 0 0. Se que aquest color de fons es gris perque  aumento de la amteixa amnera y de la mateix numero de la rgb
+        Com podria fer el background color d'una altre manera? F9 es un numero hexadecimal multilplicar cada digit de f9 hexadecimal 
+        (F9)16=(15·16exp1)+(9·16exp0) i en numero binari es 11111001. El numero 249 es decimal si vulll pasrlo a binari, he de dividir
+        entre 2 com vam aprendre a 4º Si la base que volem tranformas es 64 o 32 hem d'utilitzarmes lletreds del alfabet  
+        si s'acaben les maj. s'utilitzen les minuscules.
+        */
         .teoria { background: #eef; padding: 10px; border-radius: 5px; margin-bottom: 20px; }
+        /*El punt davant de teoria es una classe esta en la linea 98 i es un divisor un tros de codi que funciona independemnt i
+        que tindra les caracterestiques de la linea 100 que son: color grisos marge interior raid a les cantonades i un marge per sota*/
     </style>
 </head>
 <body>
+    
     <h1>Suma de Vectors Nàutics: Vaixell, Vent i Corrent</h1>
+    /*h1 es la capçelera i te tambe un titotl apartar molt gran h2 es mes petit fins a h6 que es el minim */
 
 
 <div class="teoria">
     <h2>Recordatori Teòric</h2>
     <p>Per un vector de mòdul $V$ i rumb $\theta$ (en graus):</p>
+    /*Els dolars di ntre del parragraf fa que els simbols matematics s'exprwsin en el tipus de lletra de 
+    MthJax que es un tipus de LaTex, si volem lleytres greges hem de posar el nom en angels  amb una barra inclinada abans
+    */
     <ul>
         <li>$\theta_{rad} = \theta \cdot \pi / 180$</li>
         <li>Component horitzontal (X): $V_x = V \cdot \sin(\theta_{rad})$</li>
