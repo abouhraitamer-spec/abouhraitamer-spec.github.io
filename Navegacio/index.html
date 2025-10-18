@@ -48,3 +48,45 @@ continuació convertim pas a pas. </p>
  <table >
   <tr> <th> Latitud (DMS)</th><td>35° 53' 17.88" N</td></tr>
    
+   <!--FICHA 2-->
+   
+   <tr><th> Longitud (DMS)</th><td>5° 18' 56.16" W</td></tr> 
+  </table>
+  <div class="step"> Latitud en decimal: $$Lat = 35 + \frac{53}{60} + \frac{17.88} {3600} =
+35.8883⌃\circ$$</div>
+<div class="step"> Longitud en decimal: $$Lon = -(5 + \frac{18}{60} + \frac{56.16} (3600}) =
+-5.3156⌃\circ$$</div>
+  
+<h2>1) Diferències angulars</h2>
+<p>Calcularem la diferència de latitud i longitud per després aplicar Haversine: </p>
+<div class="step">$$\Delta\varphi = Lat_{Ceuta} - Lat_{ Tarifa} = -0.1242⌃\circ$$</div>
+<div class="step">$$\Delta \lambda = Lon_{Ceuta} - Lon_{ Tarifa) = 0.2900⌃\circ$$</div>
+<p>Convertim a radians, ja que trigonometria utilitza radians:</p>
+<div class="step">$$\Delta \varphi_{rad} = -0.1242 \times \frac{\pi} {180} = -0.002166\
+rad$$</div>
+<div class="step">$$\Delta lambda_{rad} = 0.2900 \times frac{\pi} \fraci\pi){180} = 0.005061\
+rad$$</div>
+  
+<h2>2) Distància amb Haversine</h2>
+<p>Haversine permet calcular distancia sobre la superfície esférica de la Terra: </p>
+<div class="step"> $$a = \sin⌃2\left(\rfracDelta \varphi) (2} right) + \cos(Lat_{ Tarifa) (frac{|pi)
+{180}) Icos (Lat_(Ceuta) (frac{\pi} {180}) IsinA2 eft(frac (\Delta Vlambda) (2} right)$$</div>
+<div class="step"> $$a \approx 3.39 (times 10^(-6}$S</div>
+<div class="step">$$c = 2 larcsin(Isqrt{a}) lapprox 0.003567 rads$</div>
+<div class="step"> Convertim a milles nàutiques: SSd_{NM} = \frac{6371 \cdot c) {1.852)
+lapprox 15.945l NM$$</div>
+<h2>3) Rumb inicial</h2>
+<p>El rumb indica la direcció inicial cap a Ceuta: </p>
+<div class="step"> $$y = Isin(\Delta Vambda_{rad}) Icos(Lat_(Ceuta) (frac{\pi) (180}) lapprox
+0.0041S$</div>
+<div class="step"> $$x = Icos(Lat_{Tarifa) (frac{|pi} {180}) Isin(Lat_(Ceuta) (fraci|pi}{180}) -
+Isin(Lat_{ Tarifa) (frac{\pi}{180}) Icos(Lat_(Ceuta) (frac{|pi) (180}) Icos(Delta \lambda_{rad})
+lapprox 0.0019$$</div>
+<div class="step"> $$\theta = larctan2(y,x) lapprox 117.791\circ$</div>
+<h2>4) Aproximació plana</h2> <p>Per veure-ho de manera geomètrica simple: </p>
+<div class="step"> Component Nord-Sud: $SNS = |Delta Lat| \times 60 = 0.1242 \times 60 = 7.45\
+NM$$</div>
+<h2> Analitzant longitud vs latitud </h2>
+<p class="note"> Un grau de latitud és constant a tota la Terra i representa aproximadament 60 milles nàutiques (111 km) entre paral-lels, perquè les línies de latitud són paral leles i equidistants.
+En canvi, un grau de longitud varia amb la latitud. A l'equador, un grau de longitud també correspon a unes 60 milles nàutiques, però a mesura que ens acostem als pols, la distància entre dos meridians consecutius diminueix, ja que les línies de longitud convergeixen cap als pols, fins a trobar-se a zero a l'extrem nord i sud. Per calcular la distància real corresponent a un canvi de longitud en qualsevol latitud, hem de multiplicar la diferència de longitud per el factor \
+(\cos(lat\_mitjana)\). Així, encara que la diferència angular sigui la mateixa, la distància sobre la superfície terrestre depèn de la latitud, fent que un grau de longitud no sigui equivalent a un grau de latitud fora de l'equador. Aquesta correcció és essencial per obtenir distàncies precises quan es navega o es fa cartografia. </p>
