@@ -31,6 +31,26 @@
     <style>
         /* ===== COLORS & ROOT VARIABLES ===== */
         :root{
+            /*Significa arrel en angles, esuna paraula que s'utilitza en el mon informaatic, per exemple el linux, que es un istema operatiu profesional a diferencia del windows.
+            En aquest cas root significa l'elemnt significa el document arrel del html, aquest es el propi html.
+            Antigament es deia html {propietat:valor} , pero es fa servir "root{--variable:valor}" perque te una prioritat mes alta que html.
+            Perque tots els estils que estiguin dintre de root afectaran a tota la pagina web html. Perque "--variable" es un variable CSS global,
+            que puc utilitzar varies vegades. Aquestes  variables s'anomenan variablesCSS personalitzades , o custom propietas . Per exemple la variable primary  es un color
+            que surt diverses vegades en el codi per exemple en bottons d'aquest mateix color en el fons, en els tituls en arees com header que es la capçaleara principal
+            ixo permet tenir el coddi mes organitzat, perque el cavio una vegada en el root i es canvia moltes vegades a molt llocs diferents a la vegada tambe permet codis mes coherent visualment
+            i es mes facil d'amplicar de modo fosc i mode clar . El eprimary es el color principalen aquest cas son tots foscos per caçaleres i fonts. 
+            El secondary es un color secuandri i s'aplica en enllaços i coses que li coldonar importancia 
+            El accent dona encara mes imparncia per altres oo botons importants 
+            Light e sun color clar que es faservir per el fons o textos suaus
+            En aquest cas root significa l'elemnt significa el document arrel del html
+            Muted es un color apagat  per textos secundaris
+            Succes es un color verd que indica exir o que s'a fet be 
+            Card-bg es el fons d'una targeta o contenidor
+            Glass esun efecte de vidre translucid perque 0,6 es el canal alpha o transparencia que va despres de rgb,que signifca el color
+            Radius es el arrodniment de les cantonades lg=arodoniment grand(large) sm= arodoniment petit(small)
+            Shadow es una ombra suau per donar profunditata un black o contenedor
+            
+            */
             --primary: #2c3e50;
             --secondary: #3498db;
             --accent: #e74c3c;
@@ -47,6 +67,7 @@
 
         /* ===== BASIC LAYOUT ===== */
         *{box-sizing:border-box}
+        /***/
         html,body{
             height:100%;
             margin:0;
