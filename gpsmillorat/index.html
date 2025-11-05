@@ -38,8 +38,10 @@
   Trk significa tracks o trajectes que són registres de camins o rutes seguits formats per una serie de punts (latitud, longitut ordenats 
   cronologicament)
     Dintre del trk hi ha una etiqueta <name> que hi ha el nom de la ruta, i a continuación hi ha una etiqueta trkpt, abans hi ha un trkseg
-      que es una secuencia de trkpt o track points que a vegades s'anomenen waypoints o punts de referencia, cada track point té una latitud i una longitud
-  per exemple <trkpt lat="41.842" lon="1.936"></trkpt>
+      que es una seqüència de trkpt o track points que a vegades s'anomenen waypoints o punts de referència, cada track point té una latitud i una longitud
+  per exemple <trkpt lat="41.842" lon="1.936"></trkpt> Podem afegir mes etiuqetes com per exemple <ele> que significa elevaio(elevation) que es l'alçada 
+  en metres del punt.GPX es un format obert es a dir que no hi ha cap empresa propietaria i es un format molt utilitzat per dispotius GPS
+  per programes que utilitzen mapes digitals o per apps que utilitzen rutes. Compatible amb GIS que son sitemas d'informacio geoagrafica.
   -->
 <button onclick="mesura()">Mesura</button>
 <button onclick="exportCSV()">Exporta CSV</button>
@@ -61,19 +63,44 @@
 <div id="map"></div>
 
 <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
+  <!--La linia 65n carrega leaflet.js i fa posible qu funcionin els mapes.
+  Leafletesunabiblioteca javascript de codi obert vol dirque tothom e acces i pot veure internamentel codi
+  Per exemple google maps no sde codi obert si no de codi tancato codi propietari.que no nomesno puc veure
+  tot sino que tampoc el puc modficar (similar a libreoficie(es gatis i de codi obert inclou editorde text
+  o editor de diapositives que es diu impres i edir de full de calcul que es diu calc, en canvi microsoft 
+  office el word al exel i powerpint son d ecodi tancta propietari  i de pagamentmapes inteactius compatibles amb el movil.
+  i microsoft office) Que es letmesures? Significa declarem una ariable -->
 <script>
 let mesures = [];
+  /*let mesures significa crear una variable global peruqe afecta a tot el script que coemcça a la linea 73 i la inicilizem amb un conjunt
+  de valors qu es coneix com array buit amb la intencio d'emagatzemar lectures GP de latitud i longitud 
+  letmap crea una instancia  de mapes tipus lifleat i l'assigne a un elemnt al que tingui una ID anomenada map que en aquest cas es un divsor 
+  o area buida de la pgina que esta a linea 63 i que es el lloc on apareixera el mapa. si no hagues escrit la linea 63  la 79 generaria un error
+  perque no trobuaria un lloc per posar el mapa. El setview done una vista inical del mapa i les cordeneades principals son 0,0 que esta situat
+  en el golf de guinea i 2 es el zoom iel zoom 2 es un zoom molt allunyatn vista global.. Zoom 8 veuiriem catalunya i Zoom13 veuirieem martorell
+  zoom 0 el mon sencer zoom 18 veuirem el nostre centre Pom Peu Fabra.*/
 let map = L.map('map').setView([0,0], 2);
 L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+  /*L.tileLayer title: capa de mosaic del oppenstritmap. Openstreatmap es la versio de codi obert i lliurrre del coi tancat de google maps 
+  x i y serien les cordenades de longitud i latitud que ars son unas variables i z es una altre variable que es el zoom.
+  addtp(map) afegir les capes al mapa creat. si LA MEVA WEB TE MILERS DE PETICCIONSPER SEON POT TENIR PROBLEMES PERQUE esat anant a un servidor lliure
+  de openstreetmap si pases aixo podria descareguar openstretmap peruque es un codi obert
+  polyline dibuixara divereses lineas rectes i cada linea recte i cadascuna correspondra a aun trajectoria i la dibuixara de color vermell
+  la funcio mesura es una fucnio javascript que ens donara els valor de latitud i longitud i la crida un boto a linea 46 .*/
   attribution: '© OpenStreetMap contributors'
 }).addTo(map);
 let polyline = L.polyline([], {color:'red'}).addTo(map);
 
 function mesura() {
   const estat = document.getElementById("estat");
+  /*estat es una variable pero que te molts valor constants i per aixo el definim com a const. Podra ser diferents valor com obtent GPS  O ERROR 
+  mesura gurdada... Si aquesta variable l'haguesim posat  en un <div> es el triç de la apgina web que esta buit*/
   estat.textContent = "🔍 Obtenint GPS amb precisió alta...";
 
   if (!navigator.geolocation) {
+/*si no esta disponible la geolocalitzacioen el navegador (admiracio significa negacio i el if es un condicional ) i el if es un condicional ha de mostrar
+una finestra d'alerta 
+la geolociltazio es una API interficie de programcio d'apilicaciosn que sempre solicita permsi a l'usuari */
     alert("La geolocalització no és compatible amb aquest navegador.");
     return;
   }
