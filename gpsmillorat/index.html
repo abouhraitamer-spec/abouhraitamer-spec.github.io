@@ -38,10 +38,12 @@
   Trk significa tracks o trajectes que són registres de camins o rutes seguits formats per una serie de punts (latitud, longitut ordenats 
   cronologicament)
     Dintre del trk hi ha una etiqueta <name> que hi ha el nom de la ruta, i a continuación hi ha una etiqueta trkpt, abans hi ha un trkseg
-      que es una seqüència de trkpt o track points que a vegades s'anomenen waypoints o punts de referència, cada track point té una latitud i una longitud
-  per exemple <trkpt lat="41.842" lon="1.936"></trkpt> Podem afegir mes etiuqetes com per exemple <ele> que significa elevaio(elevation) que es l'alçada 
-  en metres del punt.GPX es un format obert es a dir que no hi ha cap empresa propietaria i es un format molt utilitzat per dispotius GPS
-  per programes que utilitzen mapes digitals o per apps que utilitzen rutes. Compatible amb GIS que son sitemas d'informacio geoagrafica.
+      que es una secuencia de trkpt o track points que a vegades s'anomenen waypoints o punts de referencia, cada track point té una latitud i una longitud
+  per exemple <trkpt lat="41.842" lon="1.936"></trkpt>
+  Podem afegir més etiquetes  com per exemple <ele> que significa elevació que és l'alçada en mettres del punt
+  GPX és u ormat obert, és a dir, que no hi ha cap empresa propietaria i es un format molt utilitzat per dispositius gps, per 
+  programes que utilitzen mapes digitals o per apps que utilitzen rutes. És compatibles amb gis que son sistemes d'informaació geogràfica.
+  
   -->
 <button onclick="mesura()">Mesura</button>
 <button onclick="exportCSV()">Exporta CSV</button>
@@ -63,48 +65,65 @@
 <div id="map"></div>
 
 <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
-  <!--La linia 65n carrega leaflet.js i fa posible qu funcionin els mapes.
-  Leafletesunabiblioteca javascript de codi obert vol dirque tothom e acces i pot veure internamentel codi
-  Per exemple google maps no sde codi obert si no de codi tancato codi propietari.que no nomesno puc veure
-  tot sino que tampoc el puc modficar (similar a libreoficie(es gatis i de codi obert inclou editorde text
-  o editor de diapositives que es diu impres i edir de full de calcul que es diu calc, en canvi microsoft 
-  office el word al exel i powerpint son d ecodi tancta propietari  i de pagamentmapes inteactius compatibles amb el movil.
-  i microsoft office) Que es letmesures? Significa declarem una ariable -->
+<!-- La línia 66 carrega leaflet.js i fa possible que funcionin els mapes. Leaflet és una biblioteca javascript de codi obert. Tothom té accés
+  i pot veure internament el codi.
+Per exeple google maps no és un codi obert, pertany a google, és codi tancat o codi propietari que no només no puc veure
+  toot sinó que tampoc el puc modificar (similar a libreoffice(és gratis i de ci obert i inclou editor de text o editor de diapositives
+  o editor dde full de càlculs que es diu calc, en canvi en micrsoft office, concretament word.
+  Leaflet fa mapes interactius compatibles amb el mòbil.-->
 <script>
+  /*let mesures ssignifica crear una variable global perquè afecta a tot l'scriipt que comença a la línia 73 i la iniciallitzem amb un conjunt 
+  de valors [] qu es coneix com array buit amb l'intenció d'emmagatzemar lectures gps de latitut i longitut.
+  let map crea una instància de maapa tipus leaflet i l'assigna a un element, al que tingui una id anomenada maap que en aquest cas es un divisor o  està 
+  a la línia 63 i que es el lloc on apareixerà el mapa. Si no hi hagués escritla línia 63, la 81 generaria un error ja que no trobaria un lloc on posar el mapa.
+  El setView dona una visita inicial del mapa i  les coordenades inicials son 0,0 que està situat en el Golf de Guinea i 2 és el zoom, que és molt allunyat. Quan més ampliem més coses 
+  més específiques veurem.*/
 let mesures = [];
-  /*let mesures significa crear una variable global peruqe afecta a tot el script que coemcça a la linea 73 i la inicilizem amb un conjunt
-  de valors qu es coneix com array buit amb la intencio d'emagatzemar lectures GP de latitud i longitud 
-  letmap crea una instancia  de mapes tipus lifleat i l'assigne a un elemnt al que tingui una ID anomenada map que en aquest cas es un divsor 
-  o area buida de la pgina que esta a linea 63 i que es el lloc on apareixera el mapa. si no hagues escrit la linea 63  la 79 generaria un error
-  perque no trobuaria un lloc per posar el mapa. El setview done una vista inical del mapa i les cordeneades principals son 0,0 que esta situat
-  en el golf de guinea i 2 es el zoom iel zoom 2 es un zoom molt allunyatn vista global.. Zoom 8 veuiriem catalunya i Zoom13 veuirieem martorell
-  zoom 0 el mon sencer zoom 18 veuirem el nostre centre Pom Peu Fabra.*/
 let map = L.map('map').setView([0,0], 2);
 L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
-  /*L.tileLayer title: capa de mosaic del oppenstritmap. Openstreatmap es la versio de codi obert i lliurrre del coi tancat de google maps 
-  x i y serien les cordenades de longitud i latitud que ars son unas variables i z es una altre variable que es el zoom.
-  addtp(map) afegir les capes al mapa creat. si LA MEVA WEB TE MILERS DE PETICCIONSPER SEON POT TENIR PROBLEMES PERQUE esat anant a un servidor lliure
-  de openstreetmap si pases aixo podria descareguar openstretmap peruque es un codi obert
-  polyline dibuixara divereses lineas rectes i cada linea recte i cadascuna correspondra a aun trajectoria i la dibuixara de color vermell
-  la funcio mesura es una fucnio javascript que ens donara els valor de latitud i longitud i la crida un boto a linea 46 .*/
+  /*L.tileLayer, tile sigifica mosaic per tant és una capa                */
   attribution: '© OpenStreetMap contributors'
 }).addTo(map);
+  /* addTo(map) */
 let polyline = L.polyline([], {color:'red'}).addTo(map);
-
+/*A la linia 42 tenimun divisor  buit que reserva  un espai que representa el calor de "estat", que posteriorment canviara a ""🔍 Obtenint GPS amb precisió alta..."" i mes endavant
+encaraa a "✅ Mesura registrada!" o a " "⚠️ Error GPS: " enconjunt  un misatge d'error  */
 function mesura() {
+  /*function mesura*/
   const estat = document.getElementById("estat");
-  /*estat es una variable pero que te molts valor constants i per aixo el definim com a const. Podra ser diferents valor com obtent GPS  O ERROR 
-  mesura gurdada... Si aquesta variable l'haguesim posat  en un <div> es el triç de la apgina web que esta buit*/
+  /*Variable definida com a constant és una variable però que té molt pocs vaalors constants */
   estat.textContent = "🔍 Obtenint GPS amb precisió alta...";
 
   if (!navigator.geolocation) {
-/*si no esta disponible la geolocalitzacioen el navegador (admiracio significa negacio i el if es un condicional ) i el if es un condicional ha de mostrar
-una finestra d'alerta 
-la geolociltazio es una API interficie de programcio d'apilicaciosn que sempre solicita permsi a l'usuari */
+    /* ! (VOL DIR NEGACIÓ) */
     alert("La geolocalització no és compatible amb aquest navegador.");
     return;
   }
+ /* getCurrentPosition és una part de l'API de Geolocation i pot funcionar amb un únic argument queés la posicio fins a  3 argumnets:
+    -El primer argument es el callbak d'exit  que es una funcio anonima ques'executaquan el navegador obte la posicio i nomes rep 
+    un objecte anoment "pos".
+    -El segon argment es CallBack d'error , funcio anonima quan el navegador obte la posicio i pot generar un error per l'usuari.
+    -El treçer argument es un objecte d'opcions que permet regular com funciona el GPS.
+    -La funcio fletxa derera de "pos" es la funcio anonima perque no escric la paraula "function" , "pos" te uns arguments  que són
+    "coords.lognitude" emmagatzemats a les constant "lat" i"long" resperctivament, 41, 38 per latitud i 2,18 per longitd. Son variables
+    numeriques(o floating point number). La variable constant ubicacio llegira agafa amb la funcio  getElementyById el valor de la linea
+    26, introduit per l'usuari que es un text(string) o cadena de caràcters.
+    mesures.push el que fa es enviar mesures dintre  de arrey o conjunt de dades esta composat er diversosobjectes i cada objecte esta
+    format per lat. long. i ubicacio que son els tres arguments que utilitza per enviar .push, (un mtode (aplicant sintaxicament amb un 
+    punt  endavant) que apliquem cap a un. Les funcionsamb un punt endavant poden estar predefinides o definides, pero en aquest si esta 
+    predefinides.
 
+    Funcio anonima o funcio fletxa: sense nom, executible, amb la intencio d'estalviar codi.
+    Funcio predefinida: amb nom,sense definir elnom dins del codi
+
+    || (doble barra) es la porta logica "o" a da pasar una condccio o un altres per que executi  en dues condicions (una o altr condicio ha
+    de ser true, es a dir veritable).
+       const ubicacio = document.getElementById("ubicacioInput").value || `Punt ${mesures.length+1}`;
+    La anterior linia indica que si l'usuari no introdueix un nombre  ala posicio que el codi afegeix un per defecte que es "Punt"
+       document.getElementById("ubicacioInput").value = "";
+    La anterior linia esborra el tet introduint a on  es definiex el nom del punt, ja que esta buit , (= "";)
+      estat.textContent = "✅ Mesura registrada!";
+    */
   navigator.geolocation.getCurrentPosition(
     (pos) => {
       const lat = pos.coords.latitude;
@@ -117,8 +136,9 @@ la geolociltazio es una API interficie de programcio d'apilicaciosn que sempre s
       calculaDistancies();
       actualitzaMapa();
     },
-    (err) => {
-      estat.textContent = "⚠️ Error GPS: " + err.message;
+    (err) => { 
+      /*      estat.textContent = es una funcio que altera el calor de un string. */
+      estat.textContent = "⚠️ Error GPS: " + err.message;  
     },
     {
       enableHighAccuracy: true,
