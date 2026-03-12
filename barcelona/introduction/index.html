@@ -1,68 +1,160 @@
-<div style="background: radial-gradient(circle at top left, #1a1a2e, #16213e); color: #e94560; font-family: 'Segoe UI', Roboto, Helvetica, sans-serif; padding: 50px 20px; border-radius: 20px; max-width: 1000px; margin: auto; box-shadow: 0 20px 50px rgba(0,0,0,0.3); border: 1px solid #0f3460;">
+<!DOCTYPE html>
+<html lang="ca">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Anàlisi Gràcia: Aire i Salut</title>
+    <style>
+        :root {
+            --primary: #2a9d8f;
+            --dark: #264653;
+            --accent: #e76f51;
+            --bg: #f4f1de;
+        }
 
-  <div style="text-align: left; border-left: 5px solid #e94560; padding-left: 20px; margin-bottom: 50px;">
-    <h1 style="font-size: 2.2rem; color: #ffffff; margin: 0; text-transform: uppercase; letter-spacing: 2px; line-height: 1.1;">
-      Bcn <span style="color: #e94560;">Eco-Health</span> Analysis
-    </h1>
-    <p style="color: #4ecca3; font-weight: bold; margin-top: 5px; font-size: 0.9rem;">
-      [ 14-YEAR SPATIOTEMPORAL STUDY: 2012 — 2025 ]
-    </p>
-  </div>
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            line-height: 1.6;
+            color: var(--dark);
+            background-color: var(--bg);
+            margin: 0;
+            padding: 0;
+        }
 
-  <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 25px; margin-bottom: 40px;">
-    
-    <div style="background: rgba(15, 52, 96, 0.5); padding: 25px; border-radius: 15px; border: 1px solid #0f3460;">
-      <h3 style="color: #ffffff; font-size: 1rem; margin-top: 0; display: flex; align-items: center; gap: 10px;">
-        <span style="font-size: 1.5rem;">👥</span> TEAM & ORIGIN
-      </h3>
-      <p style="color: #95a5a6; font-size: 0.9rem; line-height: 1.5;">
-        Project developed by <strong style="color: #e94560;">8 researchers</strong> from the 11th grade (Baccalaureate).
-        <br><br>
-        <span style="color: #ffffff;">Institution:</span> 
-        <em>Pompeu Fabra High-School (Martorell)</em>.
-        <br>
-        <span style="color: #ffffff;">Field:</span> Coding & Data Science.
-      </p>
+        .container { max-width: 900px; margin: auto; padding: 40px 20px; }
+
+        header {
+            text-align: center;
+            border-bottom: 3px solid var(--primary);
+            padding-bottom: 20px;
+            margin-bottom: 40px;
+        }
+
+        h1 { font-size: 2.2rem; color: var(--dark); margin-bottom: 10px; }
+        .subtitle { font-weight: bold; color: var(--primary); text-transform: uppercase; letter-spacing: 1px; }
+
+        .data-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 20px;
+            margin: 30px 0;
+        }
+
+        .card {
+            background: white;
+            padding: 20px;
+            border-radius: 12px;
+            box-shadow: 0 4px 6px rgba(0,0,0,0.05);
+            border-top: 5px solid var(--primary);
+        }
+
+        .chart-placeholder {
+            background: #ddd;
+            width: 100%;
+            aspect-ratio: 16 / 9;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            border-radius: 8px;
+            margin: 20px 0;
+            border: 2px dashed #bbb;
+            color: #666;
+            font-style: italic;
+        }
+
+        .methodology {
+            background: var(--dark);
+            color: white;
+            padding: 30px;
+            border-radius: 15px;
+            margin-top: 40px;
+        }
+
+        .badge {
+            display: inline-block;
+            background: var(--accent);
+            color: white;
+            padding: 5px 12px;
+            border-radius: 20px;
+            font-size: 0.8rem;
+            margin-bottom: 10px;
+        }
+
+        a { color: var(--primary); text-decoration: none; font-weight: bold; }
+        
+        .footer { text-align: center; margin-top: 50px; font-size: 0.8rem; opacity: 0.7; }
+    </style>
+</head>
+<body>
+
+<div class="container">
+    <header>
+        <span class="badge">mSchools Project 2026</span>
+        <h1>Impacte de la Qualitat de l'Aire en la Salut Respiratòria</h1>
+        <p class="subtitle">Estudi Espai-Temporal: Barcelona - Districte de Gràcia</p>
+    </header>
+
+    <section>
+        <h2>1. El Repte: Per què Gràcia?</h2>
+        <p>
+            Hem analitzat les dades horàries des de <strong>1997 fins a 2025</strong> de l'estació de Gràcia. 
+            És un barri amb carrers estrets on l'efecte "canó" pot concentrar contaminants com el 
+            <strong>NO₂</strong> i les <strong>PM10</strong>, afectant directament als veïns.
+        </p>
+    </section>
+
+    <div class="data-grid">
+        <div class="card">
+            <h3>📉 Evolució Històrica</h3>
+            <p>Usant dades des de 1991, hem creat un <strong>TrendLevel</strong> per observar si les polítiques de restricció de trànsit realment funcionen.</p>
+        </div>
+        <div class="card">
+            <h3>⏰ Patrons Horaris</h3>
+            <p>Amb el gràfic <strong>TimeVariation</strong>, detectem els pics d'emissions que coincideixen amb les hores punta d'entrada a Barcelona.</p>
+        </div>
     </div>
 
-    <div style="background: rgba(15, 52, 96, 0.5); padding: 25px; border-radius: 15px; border: 1px solid #0f3460;">
-      <h3 style="color: #ffffff; font-size: 1rem; margin-top: 0; display: flex; align-items: center; gap: 10px;">
-        <span style="font-size: 1.5rem;">🎯</span> CORE MISSION
-      </h3>
-      <p style="color: #95a5a6; font-size: 0.9rem; line-height: 1.5;">
-        Cross-referencing <b style="color: #ffffff;">air pollutants</b> and <b style="color: #ffffff;">meteorological data</b> to decode the patterns behind respiratory infections in urban environments.
-      </p>
+    <section>
+        <h2>2. Evidència Visual (Gràfics OpenAir en R)</h2>
+        
+        <div class="card">
+            <h4>Calendar Plot 2025</h4>
+            <p class="small">Visualització diària de la concentració de contaminants.</p>
+            <div class="chart-placeholder">
+                <img src="calendarplot.png" alt="Calendar Plot 2025" style="width:100%; border-radius:8px;">
+                </div>
+        </div>
+
+        <div class="card">
+            <h4>Tendències de NO2</h4>
+            <div class="chart-placeholder">
+                <img src="trendlevel.png" alt="Trend Level" style="width:100%; border-radius:8px;">
+            </div>
+        </div>
+    </section>
+
+    <section class="methodology">
+        <h2>3. Metodologia: Com hem creuat les dades?</h2>
+        <p>El cor del nostre projecte és la integració de tres fonts clau:</p>
+        <ul>
+            <li><strong>Meteocat:</strong> Dades semihoràries (Vent i Temperatura) per veure com la dispersió meteorològica afecta la pol·lució.</li>
+            <li><strong>SIVIC:</strong> Casos diaris d'infeccions respiratòries als CAP del barri.</li>
+            <li><strong>XVPCA:</strong> Nivells de contaminants atmosfèrics de l'estació de Gràcia.</li>
+        </ul>
+        <p><em>"Hem observat que els dies amb inversió tèrmica (Meteocat) i alts nivells de NO₂, les visites al CAP per motius respiratoris augmenten en un interval de 24-48 hores."</em></p>
+    </section>
+
+    <section style="margin-top: 40px;">
+        <h2>Dades i Fonts</h2>
+        <p>Consulta la base de dades oficial de la Generalitat:</p>
+        <a href="https://sivic.salut.gencat.cat/" target="_blank">🔗 Portal SIVIC (Salut de Catalunya)</a>
+    </section>
+
+    <div class="footer">
+        Projecte creat per l'alumnat d'11è Grau - INS Pompeu Fabra (Martorell)<br>
+        Assignatura: Programació i Ciència de Dades.
     </div>
-
-  </div>
-
-  <div style="background: #ffffff; color: #1a1a2e; padding: 30px; border-radius: 15px;">
-    <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 20px;">
-      <h2 style="margin: 0; font-size: 1.3rem;">Data Acquisition Source</h2>
-      <a href="https://sivic.salut.gencat.cat/" target="_blank" style="background: #1a1a2e; color: #fff; padding: 8px 15px; border-radius: 5px; text-decoration: none; font-size: 0.8rem; font-weight: bold;">
-        VISIT SIVIC PORTAL →
-      </a>
-    </div>
-
-    <div style="border-top: 2px solid #f0f0f0; padding-top: 20px;">
-      <p style="font-size: 0.9rem; margin-bottom: 20px;">
-        <strong>Coverage:</strong> 66 Primary Care Centers across Barcelona. Daily resolution.
-      </p>
-      
-      <div style="display: flex; flex-wrap: wrap; gap: 8px;">
-        <span style="background: #e94560; color: white; padding: 4px 10px; border-radius: 4px; font-size: 0.75rem;">Epidemiological Week</span>
-        <span style="background: #1a1a2e; color: white; padding: 4px 10px; border-radius: 4px; font-size: 0.75rem;">Socioeconomic Index</span>
-        <span style="background: #1a1a2e; color: white; padding: 4px 10px; border-radius: 4px; font-size: 0.75rem;">Diagnosis</span>
-        <span style="background: #1a1a2e; color: white; padding: 4px 10px; border-radius: 4px; font-size: 0.75rem;">Age Group</span>
-        <span style="background: #1a1a2e; color: white; padding: 4px 10px; border-radius: 4px; font-size: 0.75rem;">Sex</span>
-        <span style="background: #1a1a2e; color: white; padding: 4px 10px; border-radius: 4px; font-size: 0.75rem;">Population Cases</span>
-        <span style="background: #4ecca3; color: #1a1a2e; padding: 4px 10px; border-radius: 4px; font-size: 0.75rem; font-weight: bold;">2012 - 2025</span>
-      </div>
-    </div>
-  </div>
-
-  <div style="text-align: center; margin-top: 30px; font-size: 0.7rem; color: #4ecca3; opacity: 0.6; text-transform: uppercase; letter-spacing: 3px;">
-    System Status: Stable // Data Processing Active
-  </div>
-
 </div>
+
+</body>
+</html>
