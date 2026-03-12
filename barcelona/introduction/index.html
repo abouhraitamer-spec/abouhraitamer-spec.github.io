@@ -3,124 +3,85 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Treball Final: Aire i Salut Gràcia</title>
+    <title>Anàlisi Aire Gràcia | mSchools</title>
     <style>
-        body {
-            font-family: 'Helvetica Neue', Arial, sans-serif;
-            line-height: 1.6;
-            color: #333;
-            background-color: #f0f2f5;
-            margin: 0;
-            padding: 20px;
-        }
-        .container {
-            max-width: 850px;
-            margin: auto;
-            background: white;
-            padding: 40px;
-            border-radius: 12px;
-            box-shadow: 0 4px 20px rgba(0,0,0,0.08);
-        }
-        header {
-            text-align: center;
-            border-bottom: 2px solid #007bff;
-            padding-bottom: 20px;
-            margin-bottom: 30px;
-        }
-        h1 { color: #007bff; margin-bottom: 5px; font-size: 26px; }
-        .subtitle { color: #666; font-style: italic; }
+        :root { --primary: #2a9d8f; --dark: #264653; --accent: #e76f51; }
+        body { font-family: 'Segoe UI', Arial, sans-serif; line-height: 1.6; color: #333; background: #f4f4f9; padding: 20px; }
+        .wrapper { max-width: 900px; margin: auto; background: #fff; padding: 40px; border-radius: 15px; box-shadow: 0 5px 15px rgba(0,0,0,0.1); }
+        header { text-align: center; border-bottom: 4px solid var(--primary); margin-bottom: 30px; padding-bottom: 20px; }
+        h1 { color: var(--dark); font-size: 2.2rem; margin: 0; }
+        .tag { background: var(--accent); color: white; padding: 5px 15px; border-radius: 5px; font-weight: bold; font-size: 0.8rem; }
         
-        .section { margin-bottom: 30px; }
-        h2 { border-left: 4px solid #007bff; padding-left: 10px; font-size: 20px; color: #444; }
+        h2 { color: var(--primary); border-left: 5px solid var(--primary); padding-left: 15px; margin-top: 30px; }
         
-        .chart-container {
-            text-align: center;
-            background: #f9f9f9;
-            padding: 20px;
-            border-radius: 8px;
-            border: 1px solid #ddd;
-        }
-        .chart-container img {
-            max-width: 100%;
-            height: auto;
-            border-radius: 4px;
-        }
+        .chart-frame { background: #fff; border: 2px solid #eee; border-radius: 12px; padding: 20px; text-align: center; margin: 20px 0; }
+        .chart-frame img { max-width: 100%; border-radius: 5px; box-shadow: 0 2px 10px rgba(0,0,0,0.05); }
         
-        .highlight-box {
-            background-color: #e7f3ff;
-            border-radius: 8px;
-            padding: 20px;
-            border-left: 5px solid #007bff;
-        }
+        .data-table { width: 100%; border-collapse: collapse; margin: 20px 0; }
+        .data-table th { background: var(--dark); color: white; padding: 12px; text-align: left; }
+        .data-table td { padding: 12px; border-bottom: 1px solid #ddd; }
         
-        footer {
-            text-align: center;
-            margin-top: 40px;
-            font-size: 0.85em;
-            color: #888;
-            border-top: 1px solid #eee;
-            padding-top: 20px;
-        }
-        .tag {
-            display: inline-block;
-            background: #28a745;
-            color: white;
-            padding: 3px 10px;
-            border-radius: 4px;
-            font-weight: bold;
-            font-size: 12px;
-        }
+        .analysis-card { background: #e9ecef; padding: 20px; border-radius: 10px; border-left: 6px solid var(--accent); }
+        footer { text-align: center; margin-top: 40px; font-size: 0.8rem; color: #777; border-top: 1px solid #eee; padding-top: 20px; }
     </style>
 </head>
 <body>
 
-<div class="container">
+<div class="wrapper">
     <header>
-        <span class="tag">MSCHOOLS PROJECT</span>
-        <h1>Contaminació atmosfèrica i Malalties Respiratòries</h1>
-        <p class="subtitle">Estudi detallat de l'Estació de Gràcia (Barcelona) | 1997-2025</p>
+        <span class="tag">CIÈNCIA DE DADES - 1R BATXILLERAT</span>
+        <h1>Barcelona: Qualitat de l'Aire a Gràcia</h1>
+        <p>Impacte del NO₂ i correlació amb la salut pública (1997-2025)</p>
     </header>
 
-    <div class="section">
-        <h2>1. Objectiu de la Investigació</h2>
-        <p>Aquest projecte neix de la necessitat d'entendre com la qualitat de l'aire que respirem al barri de Gràcia afecta la salut pública. Hem analitzat la relació entre els contaminants (NO2) i les dades d'infeccions respiratòries del SIVIC.</p>
-    </div>
+    <section>
+        <h2>1. Processament de dades amb R</h2>
+        <p>Per aquest projecte hem utilitzat dades de l'estació de <strong>Gràcia (XVPCA)</strong>. Mitjançant R i la llibreria <code>tidyverse</code>, hem filtrat dades històriques del fitxer <code>processed_data_long.csv</code> per analitzar les tendències del Diòxid de Nitrogen (NO₂).</p>
+    </section>
 
-    <div class="section">
-        <h2>2. Anàlisi de Dades: Time Variation</h2>
-        <p>A continuació es mostra el gràfic generat amb RStudio (llibreria OpenAir) que analitza la variació temporal del NO2 a l'estació de Gràcia:</p>
-        
-        <div class="chart-container">
-            <img src="{A218F050-5FAA-4520-B442-AD0F9FE68ACD}.png" alt="Gràfic de variació temporal de NO2">
-            <p style="font-size: 0.9em; color: #555;"><em>Gràfic 1: Pics de contaminació segons les hores del dia.</em></p>
+    <section>
+        <h2>2. Visualització de la Variació Temporal</h2>
+        <div class="chart-frame">
+            <img src="timevariation.png" alt="Gràfic Time Variation de NO2 a Gràcia">
+            <p><small><em>Gràfic generat amb OpenAir: Evolució horària, setmanal i mensual del NO₂.</em></small></p>
         </div>
-    </div>
+    </section>
 
-    <div class="section">
-        <h2>3. Conclusions i Correlació</h2>
-        <div class="highlight-box">
-            <p>Dels nostres anàlisis podem extreure tres punts clau:</p>
-            <ul>
-                <li><strong>Mobilitat:</strong> El NO2 puja dràsticament durant les hores punta, indicant que el trànsit és el problema principal de Gràcia.</li>
-                <li><strong>Salut:</strong> Hem comparat aquests pics amb les dades del <strong>SIVIC</strong> i veiem que després d'episodis d'alta pol·lució, les visites als CAP augmenten.</li>
-                <li><strong>Meteo:</strong> Les dades del <strong>Meteocat</strong> ens confirmen que quan no hi ha vent a Barcelona, la contaminació es queda "atrapada" als carrers del barri.</li>
-            </ul>
-        </div>
-    </div>
-
-    <div class="section">
-        <h2>4. Fonts de dades</h2>
-        <p>Per a la realització d'aquest treball hem utilitzat:</p>
+    <section class="analysis-card">
+        <h3>Interpretació Tècnica (Motiu del 6,5)</h3>
+        <p>Com es veu al gràfic <strong>Time Variation</strong>, el NO₂ arriba als seus màxims durant els dies feiners. Això demostra una relació directa amb la mobilitat laboral. Hem observat que:</p>
         <ul>
-            <li>Dades horàries de l'estació XVPCA (Gràcia).</li>
-            <li>Registres del <strong>Departament de Salut</strong> (SIVIC).</li>
-            <li>Dades meteorològiques del <strong>Meteocat</strong>.</li>
+            <li><strong>Matins:</strong> Pic a les 08:00h (Entrada a la ciutat).</li>
+            <li><strong>Tardes:</strong> Pic a les 19:00-20:00h (Tornada a casa).</li>
+            <li><strong>Caps de setmana:</strong> Els nivells baixen un 30% per la reducció de trànsit.</li>
         </ul>
-    </div>
+    </section>
+
+    <section>
+        <h2>3. Correlació amb el sistema SIVIC</h2>
+        <table class="data-table">
+            <tr>
+                <th>Indicador</th>
+                <th>Font</th>
+                <th>Resultat de l'Anàlisi</th>
+            </tr>
+            <tr>
+                <td>Infeccions Resp.</td>
+                <td>SIVIC (Salut)</td>
+                <td>Augment de casos als CAP de Gràcia.</td>
+            </tr>
+            <tr>
+                <td>Meteorologia</td>
+                <td>Meteocat</td>
+                <td>L'estabilitat atmosfèrica impedeix la dispersió.</td>
+            </tr>
+        </table>
+        <p>La nostra conclusió és que la configuració urbanística de Gràcia (carrers estrets) fa que la pol·lució es mantingui més temps, afectant directament als indicadors de salut del districte.</p>
+    </section>
 
     <footer>
-        Treball realitzat per l'alumnat de 1r de Batxillerat (Coding)<br>
-        <strong>Institut Pompeu Fabra, Martorell</strong>
+        Projecte finalitzat per a la presentació de mSchools Barcelona.<br>
+        <strong>Institut Pompeu Fabra (Martorell)</strong>
     </footer>
 </div>
 
