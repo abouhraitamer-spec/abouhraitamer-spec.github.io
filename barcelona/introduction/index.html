@@ -1,87 +1,128 @@
 <!DOCTYPE html>
-<html lang="ca">
+<html>
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Anàlisi Aire Gràcia | mSchools</title>
+    <title>Mi Proyecto de Programación - Gràcia</title>
     <style>
-        :root { --primary: #2a9d8f; --dark: #264653; --accent: #e76f51; }
-        body { font-family: 'Segoe UI', Arial, sans-serif; line-height: 1.6; color: #333; background: #f4f4f9; padding: 20px; }
-        .wrapper { max-width: 900px; margin: auto; background: #fff; padding: 40px; border-radius: 15px; box-shadow: 0 5px 15px rgba(0,0,0,0.1); }
-        header { text-align: center; border-bottom: 4px solid var(--primary); margin-bottom: 30px; padding-bottom: 20px; }
-        h1 { color: var(--dark); font-size: 2.2rem; margin: 0; }
-        .tag { background: var(--accent); color: white; padding: 5px 15px; border-radius: 5px; font-weight: bold; font-size: 0.8rem; }
-        
-        h2 { color: var(--primary); border-left: 5px solid var(--primary); padding-left: 15px; margin-top: 30px; }
-        
-        .chart-frame { background: #fff; border: 2px solid #eee; border-radius: 12px; padding: 20px; text-align: center; margin: 20px 0; }
-        .chart-frame img { max-width: 100%; border-radius: 5px; box-shadow: 0 2px 10px rgba(0,0,0,0.05); }
-        
-        .data-table { width: 100%; border-collapse: collapse; margin: 20px 0; }
-        .data-table th { background: var(--dark); color: white; padding: 12px; text-align: left; }
-        .data-table td { padding: 12px; border-bottom: 1px solid #ddd; }
-        
-        .analysis-card { background: #e9ecef; padding: 20px; border-radius: 10px; border-left: 6px solid var(--accent); }
-        footer { text-align: center; margin-top: 40px; font-size: 0.8rem; color: #777; border-top: 1px solid #eee; padding-top: 20px; }
+        /* Hecho con un tutorial de diseño sencillo */
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #eef2f3;
+            color: #333;
+            padding: 20px;
+        }
+
+        .caja-principal {
+            max-width: 800px;
+            margin: 0 auto;
+            background: white;
+            padding: 30px;
+            border: 2px solid #2a9d8f;
+            border-radius: 10px;
+        }
+
+        h1 {
+            color: #264653;
+            text-align: center;
+            text-decoration: underline;
+        }
+
+        .explicacion {
+            background-color: #f9f9f9;
+            padding: 15px;
+            border-radius: 5px;
+            border-left: 4px solid #e76f51;
+        }
+
+        .mi-grafico {
+            text-align: center;
+            margin: 25px 0;
+        }
+
+        .mi-grafico img {
+            width: 100%;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+        }
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 20px;
+        }
+
+        table, th, td {
+            border: 1px solid #999;
+        }
+
+        th {
+            background-color: #2a9d8f;
+            color: white;
+            padding: 10px;
+        }
+
+        td {
+            padding: 10px;
+            text-align: center;
+        }
+
+        footer {
+            margin-top: 30px;
+            text-align: center;
+            font-size: 12px;
+            color: #666;
+        }
     </style>
 </head>
 <body>
 
-<div class="wrapper">
-    <header>
-        <span class="tag">CIÈNCIA DE DADES - 1R BATXILLERAT</span>
-        <h1>Barcelona: Qualitat de l'Aire a Gràcia</h1>
-        <p>Impacte del NO₂ i correlació amb la salut pública (1997-2025)</p>
-    </header>
+<div class="caja-principal">
+    <h1>Contaminación en Gràcia y Salud</h1>
+    
+    <div class="explicacion">
+        <p>Hola, soy alumno del Pompeu Fabra. En este proyecto he intentado juntar los datos de las infecciones respiratorias con la contaminación que hay en el barrio de Gràcia.</p>
+        <p>He usado R y RStudio para limpiar los archivos CSV que nos dio el profe y luego he montado esta web con HTML y un poco de CSS siguiendo tutoriales de Youtube y ayuda de foros.</p>
+    </div>
 
-    <section>
-        <h2>1. Processament de dades amb R</h2>
-        <p>Per aquest projecte hem utilitzat dades de l'estació de <strong>Gràcia (XVPCA)</strong>. Mitjançant R i la llibreria <code>tidyverse</code>, hem filtrat dades històriques del fitxer <code>processed_data_long.csv</code> per analitzar les tendències del Diòxid de Nitrogen (NO₂).</p>
-    </section>
+    <h2>Mi gráfico de Time Variation</h2>
+    <p>Este gráfico lo he sacado usando la librería <strong>OpenAir</strong>. Me costó un poco que saliera, pero aquí se ve cómo sube la contaminación cuando la gente va a trabajar por la mañana:</p>
+    
+    <div class="mi-grafico">
+        <img src="timevariation.png" alt="Grafico hecho por mi en R">
+        <p><em>Gráfico 1: Los picos de NO2 a lo largo del día</em></p>
+    </div>
 
-    <section>
-        <h2>2. Visualització de la Variació Temporal</h2>
-        <div class="chart-frame">
-            <img src="timevariation.png" alt="Gràfic Time Variation de NO2 a Gràcia">
-            <p><small><em>Gràfic generat amb OpenAir: Evolució horària, setmanal i mensual del NO₂.</em></small></p>
-        </div>
-    </section>
-
-    <section class="analysis-card">
-        <h3>Interpretació Tècnica (Motiu del 6,5)</h3>
-        <p>Com es veu al gràfic <strong>Time Variation</strong>, el NO₂ arriba als seus màxims durant els dies feiners. Això demostra una relació directa amb la mobilitat laboral. Hem observat que:</p>
-        <ul>
-            <li><strong>Matins:</strong> Pic a les 08:00h (Entrada a la ciutat).</li>
-            <li><strong>Tardes:</strong> Pic a les 19:00-20:00h (Tornada a casa).</li>
-            <li><strong>Caps de setmana:</strong> Els nivells baixen un 30% per la reducció de trànsit.</li>
-        </ul>
-    </section>
-
-    <section>
-        <h2>3. Correlació amb el sistema SIVIC</h2>
-        <table class="data-table">
+    <h2>¿De dónde he sacado todo esto?</h2>
+    <p>He tenido que mirar tres sitios diferentes y juntar los datos:</p>
+    
+    <table>
+        <thead>
             <tr>
-                <th>Indicador</th>
-                <th>Font</th>
-                <th>Resultat de l'Anàlisi</th>
+                <th>Fuente</th>
+                <th>¿Qué hay aquí?</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <td>SIVIC</td>
+                <td>Los casos de gente enferma en el CAP.</td>
             </tr>
             <tr>
-                <td>Infeccions Resp.</td>
-                <td>SIVIC (Salut)</td>
-                <td>Augment de casos als CAP de Gràcia.</td>
+                <td>XVPCA</td>
+                <td>Los niveles de NO2 de la estación de Gràcia.</td>
             </tr>
             <tr>
-                <td>Meteorologia</td>
                 <td>Meteocat</td>
-                <td>L'estabilitat atmosfèrica impedeix la dispersió.</td>
+                <td>Si hacía viento o frío esos días.</td>
             </tr>
-        </table>
-        <p>La nostra conclusió és que la configuració urbanística de Gràcia (carrers estrets) fa que la pol·lució es mantingui més temps, afectant directament als indicadors de salut del districte.</p>
-    </section>
+        </tbody>
+    </table>
+
+    <h2>Mi conclusión</h2>
+    <p>Después de pelearme con los datos, se nota que cuando hay mucho tráfico en Gràcia, el aire está peor. Y lo más importante: un par de días después de que suba la contaminación, suele haber más gente que va al médico por problemas de respirar. Al vivir en calles estrechas, el aire no se limpia tan rápido.</p>
 
     <footer>
-        Projecte finalitzat per a la presentació de mSchools Barcelona.<br>
-        <strong>Institut Pompeu Fabra (Martorell)</strong>
+        <p>Trabajo hecho para Coding - Institut Pompeu Fabra (Martorell)</p>
     </footer>
 </div>
 
