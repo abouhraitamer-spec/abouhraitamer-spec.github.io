@@ -1,17 +1,37 @@
 
 <!DOCTYPE html>
 <html lang="ca">
-<head>
+    <!--lang=language, la llengua que utilitza el document-->
+<head> <!--JS-->
     <meta charset="UTF-8">
+    <!--Meta = metainformacio, que es info sobre la pagina web. 
+    Charset = conjunt se caracters que utilitzem 
+    UTF-8 = unicode transformation format de 8 bits que permet accents, dieresei,ñ,ç, permet mes d'un millio de caracters entre ells chinese, arabic, etc...-->
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <!--Aquesta liniea adapta la pagina web a la pantalla del dispositiu, device-width.-->
     <title>Reconeixement de Veu amb Anàlisi de Sentiments</title>
-    <style>
+    <!--Titul de la pestaña-->
+    <style> /*CSS,es com la decoració de la casa*/
+        /* etiquetahtm{propietat1:valor1;propietat2:valor2;propietat3:valor3;}
+        (etiquetahtml)El body=contingut de la pagina. 
+        (propietat)Font-family=tipos de lletra, buscara Arial(valor) i si no ho troba buscara qualsevol sans-serif
+        Hi ha 3 grups de lletres que son serif, sans-serif i monocode.
+        ...  */
         body {
             font-family: Arial, sans-serif;
             max-width: 800px;
+            /*Amplada maxima*/
             margin: 0 auto;
+            /*margin=Marge exterior*/
             padding: 20px;
+            /*padding=Marge interior*/
         }
+        /*Tant com margin i padding poden tenir 5 propietats de pixels
+        0 auto: 0 adalt i abaix i auto dreta esquerra
+        1 numero de px: afectara a tot els marges
+        2 numeros de px: primer numero afecta adalt y abaix, el segon dreta esquerra
+        3 numeros de px: primer numero afecta adalt, el segon dreta esquerra, terçer numero abaix
+        4 numeros de px: primer numero afecta adalt, el segon dreta , terçer numero abaix, quart numero esquerra*/
         
         button {
             padding: 10px 20px;
